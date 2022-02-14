@@ -7,6 +7,6 @@ class ProductController
 {
     public function productAction(int $id)
     {
-
+        var_dump($id);exit;
     }
 }

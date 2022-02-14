@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Core\Controller;
+namespace App\Kernel\Controller;
 
 use App\Core\Controller\Exception\TemplateFileNotFound;
 
@@ -18,10 +18,10 @@ class BaseController
             throw new TemplateFileNotFound(sprintf('Template %s not exist', $template));
         }
 
-        require_once self::VIEW_FOLDER_PATH . $template . '.php';
-
         foreach ($variables as $variable => $value) {
             ${$variable} = $value;
         }
+
+        require_once self::VIEW_FOLDER_PATH . $template . '.php';
     }
 }

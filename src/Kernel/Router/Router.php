@@ -1,17 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Core\Router;
+namespace App\Kernel\Router;
 
 use App\Controller\HomeController;
 use App\Controller\ProductController;
-use App\Core\Router\Exception\PageNotFoundException;
+use App\Kernel\Router\Exception\PageNotFoundException;
 
 class Router implements RouterInterface
 {
     /**
      * @throws PageNotFoundException
      */
+
     public function map(string $queryString): array
     {
         $url = $this->parseQueryString($queryString);
@@ -24,6 +25,7 @@ class Router implements RouterInterface
 
                 return [...$handler, $arguments];
             }
+
         }
 
         throw new PageNotFoundException(sprintf('Page %s not found', $url));
@@ -41,5 +43,4 @@ class Router implements RouterInterface
     {
         return (explode('?', $queryString))[0];
     }
-
 }
